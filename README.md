@@ -36,8 +36,12 @@ To track cards activity just add in commit message Trello card shortLink, for ex
 
 shortLink is `zxqgpGTd`
 
-cid#zxqgpGTd - include in commit message
+`cid#zxqgpGTd` - include in commit message
 
 and to track user with Trello username "USER_NAME" include in commit:
 
-un#USER_NAME
+`un#USER_NAME`
+
+So commit message must be like this:
+
+`cid#zxqgpGTd un#USER_NAME YOUR MASSAE`
