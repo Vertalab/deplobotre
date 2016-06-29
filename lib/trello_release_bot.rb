@@ -51,7 +51,7 @@ module TrelloReleaseBot
     texts.push(cards_text)   if cards.any?
     texts.push(commits_text)
 
-    card_name = Time.current.utc.strftime("#{Rails.env.capitalize} | %Y-%m-%d %H:%M UTC")
+    card_name = Time.current.utc.strftime("#{Rails.env.capitalize} | %Y-%m-%d")
     member_ids = members.uniq.map { |member| member['id'] }
     release_card = trello_bot.create_card(list['id'], card_name, texts.join("\n\n"), member_ids)
     commend_card_text = "This card was deployed to [**#{Rails.env}**](#{release_card['shortUrl']})"
