@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   # s.homepage    = 'http://rubygems.org/gems/replace-me'
   s.license       = 'MIT'
 
-  s.files         = ['lib/trello_release_bot.rb']
+  s.files         = `git ls-files`.split($/)
   s.require_paths = ['lib']
 
   s.add_dependency 'capistrano', '~> 3.0'

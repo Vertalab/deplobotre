@@ -1,4 +1,5 @@
 namespace :trello do
+  desc 'Creates Trello Card with release info'
   task :create_release do
     on roles(:web) do
       within current_path.to_s do

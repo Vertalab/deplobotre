@@ -1,6 +1,7 @@
 require 'trello_release_bot/base'
 require 'trello_release_bot/git_logger'
 require 'trello_release_bot/trello_bot'
+require 'trello_release_bot/tasks'
 
 module TrelloReleaseBot
   CARD_URL_REG = /cid#[^ ]*/
