@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name          = 'trello-release-bot'
-  s.version       = '0.0.1'
+  s.version       = '0.0.2'
   s.authors       = ['Roman Dumitro']
   s.email         = ['roman@vertalab.com']
 
