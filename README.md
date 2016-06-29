@@ -26,3 +26,18 @@ end
 NOTE: link to generate token:
 
 `https://trello.com/1/authorize?key=TRELLO_API_KEY&name=DEPLOY_BOT_NAME&expiration=never&response_type=token&scope=read,write,account`
+
+
+## How to track cards and users
+
+To track cards activity just add in commit message Trello card shortLink, for example for card:
+
+`https://trello.com/c/zxqgpGTd/example-card`
+
+shortLink is `zxqgpGTd`
+
+cid#zxqgpGTd - include in commit message
+
+and to track user with Trello username "USER_NAME" include in commit:
+
+un#USER_NAME
