@@ -6,15 +6,13 @@ After each `cap deploy` this bot creates trello card with information about depl
 
 In `Gemfile`:
 
-```
-#!ruby
-gem 'trello_release_bot', github: 'Vertalab/deplobotre'
+```ruby
+gem 'trello_release_bot', git: 'https://github.com/Vertalab/deplobotre.git'
 ```
 
 In `config/initializers/trello_release_bot.rb`
 
-```
-#!ruby
+```ruby
 TrelloReleaseBot.configure do |config|
   config.commits_url = 'https://bitbucket.org/vertaline/deplobotre/commits' # base url for repo commits
   config.trello_token = TRELLO_TOKEN # Trello token with read, write and accout access to the Trello Board
