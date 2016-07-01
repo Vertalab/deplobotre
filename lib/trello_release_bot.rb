@@ -85,6 +85,7 @@ module TrelloReleaseBot
   end
 
   def self.serch_in_commit(commit, regexp)
+    return '' if commit[:message].blank?
     commit[:message][regexp].to_s
   end
 end
