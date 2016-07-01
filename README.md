@@ -8,7 +8,7 @@ In `Gemfile`:
 
 ```
 #!ruby
-gem 'trello_release_bot', git: 'git@bitbucket.org:vertaline/deplobotre.git'
+gem 'trello_release_bot', github: 'Vertalab/deplobotre'
 ```
 
 In `config/initializers/trello_release_bot.rb`
