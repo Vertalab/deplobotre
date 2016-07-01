@@ -16,7 +16,7 @@ In `config/initializers/trello_release_bot.rb`
 TrelloReleaseBot.configure do |config|
   config.commits_url = 'https://bitbucket.org/vertaline/deplobotre/commits' # base url for repo commits
   config.trello_token = TRELLO_TOKEN # Trello token with read, write and accout access to the Trello Board
-  config.trello_key = TRELLO_API_KEY # [https://trello.com/app-key](https://trello.com/app-key)
+  config.trello_key = TRELLO_API_KEY # https://trello.com/app-key
   config.board_id = TRELLO_BOARD_ID
 end
 ```
