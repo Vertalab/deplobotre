@@ -21,6 +21,12 @@ TrelloReleaseBot.configure do |config|
 end
 ```
 
+In `Capfile` just add this line
+
+```ruby
+require 'capistrano/trello_release_bot'
+```
+
 NOTE: link to generate token:
 
 `https://trello.com/1/authorize?key=TRELLO_API_KEY&name=DEPLOY_BOT_NAME&expiration=never&response_type=token&scope=read,write,account`
