@@ -3,7 +3,7 @@ module TrelloReleaseBot
     EOC = "\n\n|EOC|\n\n".freeze
 
     # @param [String] branch name
-    # @param [Time] since time
+    # @param [String] git revision rage eg: 'd9c41e946832..cf2707e17ff2dd'
     def self.commits(repo_path, revission_rage)
       raw_logs = `cd #{repo_path} && git log #{revission_rage} --format="%H %B#{EOC}"`
       raw_logs.split(EOC + "\n").map do |raw_log|
