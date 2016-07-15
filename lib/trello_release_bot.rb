@@ -7,6 +7,7 @@ require 'trello_release_bot/railtie' if defined?(Rails)
 module TrelloReleaseBot
   CARD_URL_REG = /cid#[^ ]*/
   USER_NAME_REG = /un#[^ ]*/
+  MENTION_BOARD_MEMBERS_TEXT = '@board'.freeze
 
   def self.configure
     yield Base.config
@@ -38,11 +39,14 @@ module TrelloReleaseBot
       cards.push(card) if card
     end
 
-    cards.uniq.each do |card|
+    cards.uniq!
+    members.uniq!
+
+    cards.each do |card|
       cards_text += card_line(card)
     end
 
-    members.uniq.each do |member|
+    members.each do |member|
       members_text += member_line(member)
     end
 
@@ -52,16 +56,18 @@ module TrelloReleaseBot
     texts.push(commits_text)
 
     card_name = Time.current.utc.strftime("#{Rails.env.capitalize} | %Y-%m-%d")
-    member_ids = members.uniq.map { |member| member['id'] }
+    member_ids = members.map { |member| member['id'] }
     release_card = trello_bot.create_card(list['id'], card_name, texts.join("\n\n"), member_ids)
     commend_card_text = "This card was deployed to [**#{Rails.env}**](#{release_card['shortUrl']})"
 
-    cards.uniq.each do |card|
+    cards.each do |card|
       trello_bot.comment_card(card['id'], commend_card_text)
       unless card['labels'].find { |l| l['id'] == label['id'] }
         trello_bot.add_card_label(card['id'], label['id'])
       end
     end
+
+    trello_bot.comment_card(release_card['id'], MENTION_BOARD_MEMBERS_TEXT)
 
     release_card
   end
