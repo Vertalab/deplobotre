@@ -8,6 +8,7 @@ module TrelloReleaseBot
   CARD_URL_REG = /cid#[^ ]*/
   USER_NAME_REG = /un#[^ ]*/
   MENTION_BOARD_MEMBERS_TEXT = '@board'.freeze
+  TEXT_DIVIDER = "\n____________\n".freeze
 
   def self.configure
     yield Base.config
@@ -57,7 +58,7 @@ module TrelloReleaseBot
 
     card_name = Time.current.utc.strftime("#{Rails.env.capitalize} | %Y-%m-%d")
     member_ids = members.map { |member| member['id'] }
-    release_card = trello_bot.create_card(list['id'], card_name, texts.join("\n\n"), member_ids)
+    release_card = trello_bot.create_card(list['id'], card_name, texts.join(TEXT_DIVIDER), member_ids)
     commend_card_text = "This card was deployed to [**#{Rails.env}**](#{release_card['shortUrl']})"
 
     cards.each do |card|
