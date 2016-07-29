@@ -88,7 +88,7 @@ module TrelloReleaseBot
 
   def self.member_line(member)
     return '' if member.blank?
-    "- @#{member['username']}"
+    "- @#{member['username']}\n"
   end
 
   def self.serch_in_commit(commit, regexp)
