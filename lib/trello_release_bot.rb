@@ -60,7 +60,7 @@ module TrelloReleaseBot
     end
 
     texts = []
-    texts.push(servers_text) if servers.any?
+    texts.push(servers_text) if options[:servers].any?
     texts.push(members_text) if members.any?
     texts.push(cards_text)   if cards.any?
     texts.push(commits_text)
