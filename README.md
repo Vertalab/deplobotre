@@ -17,7 +17,7 @@ TrelloReleaseBot.configure do |config|
   config.commits_url = 'https://github.com/YOUR_REPO_NAME/commits' # base url for repo commits
   config.trello_token = TRELLO_TOKEN # Trello token with read, write and accout access to the Trello Board
   config.trello_key = TRELLO_API_KEY # https://trello.com/app-key
-  config.board_id = TRELLO_BOARD_ID
+  config.board_id = TRELLO_BOARD_ID # You may use board's shortId from url
 end
 ```
 

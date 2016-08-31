@@ -14,21 +14,29 @@ module TrelloReleaseBot
     yield Base.config
   end
 
-  # @param [String] branch name
-  # @param [Time] since time
-  def self.generate_release(repo_path, revission_rage, branch)
-    commits = GitLogger.commits(repo_path, revission_rage)
+  # @param [Hash] options
+  # @option opts [String] :repo_path, path to git repo
+  # @option opts [String] :revission_rage, for git logs
+  # @option opts [String] :application, name of application
+  # @option opts [Array] :servers, servers to which release is deployed to
+  def self.generate_release(options)
+    commits = GitLogger.commits(options[:repo_path], options[:revission_rage])
     return if commits.empty?
 
     target_list_name = "Releases - #{Rails.env.capitalize}"
     trello_bot = TrelloBot.new
     list = trello_bot.find_list(target_list_name) || trello_bot.create_list(target_list_name)
     label = trello_bot.find_label(Rails.env) || trello_bot.create_label(Rails.env)
+    servers_text = "**Servers:**\n\n"
     commits_text = "**Commits:**\n\n"
     cards_text = "**Cards:**\n\n"
     members_text = "**Contributors:**\n\n"
     members = []
     cards = []
+
+    options[:servers].each do |server_link|
+      servers_text += server_line(server_link)
+    end
 
     commits.each do |commit|
       card_short_link = serch_in_commit(commit, CARD_URL_REG).split('#').last
@@ -52,11 +60,12 @@ module TrelloReleaseBot
     end
 
     texts = []
+    texts.push(servers_text) if servers.any?
     texts.push(members_text) if members.any?
     texts.push(cards_text)   if cards.any?
     texts.push(commits_text)
 
-    card_name = Time.current.utc.strftime("#{Rails.env.capitalize} | %Y-%m-%d")
+    card_name = Time.current.utc.strftime("#{options[:application]} | %Y-%m-%d")
     member_ids = members.map { |member| member['id'] }
     release_card = trello_bot.create_card(list['id'], card_name, texts.join(TEXT_DIVIDER), member_ids)
     commend_card_text = "This card was deployed to [**#{Rails.env}**](#{release_card['shortUrl']})"
@@ -71,6 +80,10 @@ module TrelloReleaseBot
     trello_bot.comment_card(release_card['id'], MENTION_BOARD_MEMBERS_TEXT)
 
     release_card
+  end
+
+  def self.server_line(server_link)
+    "- [#{server_link}](#{server_link})\n"
   end
 
   def self.commit_line(commit)
