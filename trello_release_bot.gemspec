@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name          = 'trello_release_bot'
-  s.version       = '0.2.1'
+  s.version       = '0.2.2'
   s.authors       = ['Roman Dumitro']
   s.email         = ['roman@vertalab.com']
 
@@ -13,4 +13,5 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'capistrano', '>= 3.0'
   s.add_dependency 'rake', '>= 10.0'
+  s.add_dependency 'rest-client'
 end
