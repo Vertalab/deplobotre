@@ -89,7 +89,7 @@ module TrelloReleaseBot
 
   def self.commit_line(commit)
     return 'commit' if commit[:message].blank?
-    message = commit[:message].remove(serch_in_commit(commit, CARD_URL_REG))
+    message = commit[:message][/^(.*)$/]
     message = message.blank? ? 'commit' : message
     url = "#{Base.config.commits_url}/#{commit[:id]}"
     "- [#{message}](#{url})\n"
