@@ -1,3 +1,4 @@
+require 'rest-client'
 require 'trello_release_bot/base'
 require 'trello_release_bot/config'
 require 'trello_release_bot/git_logger'
