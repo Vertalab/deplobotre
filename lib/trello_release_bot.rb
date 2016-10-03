@@ -5,8 +5,8 @@ require 'trello_release_bot/trello_bot'
 require 'trello_release_bot/railtie' if defined?(Rails)
 
 module TrelloReleaseBot
-  CARD_URL_REG = /cid#[^ ]*/
-  USER_NAME_REG = /un#[^ ]*/
+  CARD_URL_REG = /cid#[^\s]*/
+  USER_NAME_REG = /un#[^\s]*/
   MENTION_BOARD_MEMBERS_TEXT = '@board'.freeze
   TEXT_DIVIDER = "\n____________\n".freeze
 
