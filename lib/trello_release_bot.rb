@@ -24,10 +24,10 @@ module TrelloReleaseBot
     commits = GitLogger.commits(options[:repo_path], options[:revission_rage])
     return if commits.empty?
 
-    target_list_name = "Releases - #{Rails.env.capitalize}"
+    target_list_name = "Releases - #{options[:application].capitalize}"
     trello_bot = TrelloBot.new
     list = trello_bot.find_list(target_list_name) || trello_bot.create_list(target_list_name)
-    label = trello_bot.find_label(Rails.env) || trello_bot.create_label(Rails.env)
+    label = trello_bot.find_label("Release") || trello_bot.create_label("Release")
     servers_text = "**Servers:**\n\n"
     commits_text = "**Commits:**\n\n"
     cards_text = "**Cards:**\n\n"
