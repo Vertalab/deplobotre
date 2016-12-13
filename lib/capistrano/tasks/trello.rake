@@ -1,14 +1,16 @@
 namespace :trello do
   desc 'Creates Trello Card with release info'
   task :create_release do
-    on roles(:web) do
-      within current_path.to_s do
+    servers = []
+    on roles(:all) do |server| 
+      servers << server.hostname
+    end
+    within current_path.to_s do
         with rails_env: fetch(:rails_env) do
           revission_rage = "#{fetch(:previous_revision)}..#{fetch(:current_revision)}"
-          rake_args = "#{fetch(:repo_path)},#{revission_rage},#{fetch(:application)},#{fetch(:servers)}"
+          rake_args = "#{fetch(:repo_path)},#{revission_rage},#{fetch(:application)},#{servers}"
           execute :rake, "trello_release_bot:create_release\[#{rake_args}\]"
         end
-      end
     end
   end
 
