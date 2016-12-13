@@ -69,7 +69,7 @@ module TrelloReleaseBot
     card_name = Time.current.utc.strftime("#{options[:application]} | %Y-%m-%d")
     member_ids = members.map { |member| member['id'] }
     release_card = trello_bot.create_card(list['id'], card_name, texts.join(TEXT_DIVIDER), member_ids)
-    commend_card_text = "This card was deployed to [**#{Rails.env}**](#{release_card['shortUrl']})"
+    commend_card_text = "This card was deployed to [**#{options[:application]}**](#{release_card['shortUrl']})"
 
     cards.each do |card|
       trello_bot.comment_card(card['id'], commend_card_text)
