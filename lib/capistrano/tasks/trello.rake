@@ -7,7 +7,7 @@ namespace :trello do
       servers << server.hostname
       puts "Pegou os servers: #{servers}"
     end
-    on roles(:all) do
+    on primary :app do
       within current_path.to_s do
         puts "entrou no run_locally"
         revission_rage = "#{fetch(:previous_revision)}..#{fetch(:current_revision)}"
