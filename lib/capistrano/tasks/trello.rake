@@ -1,7 +1,7 @@
 namespace :trello do
   desc 'Creates Trello Card with release info'
   task :create_release do
-    next unless fetch(:stage).eql? :production
+    next unless fetch(:stage).eql? :release
     servers = []
     on roles(:all) do |server| 
       servers << server.hostname
