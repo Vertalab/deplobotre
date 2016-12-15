@@ -8,11 +8,13 @@ namespace :trello do
       puts "Pegou os servers: #{servers}"
     end
     on roles(:all) do
+      within current_path.to_s do
         puts "entrou no run_locally"
         revission_rage = "#{fetch(:previous_revision)}..#{fetch(:current_revision)}"
         rake_args = "#{fetch(:repo_path)},#{revission_rage},#{fetch(:application)},#{servers}"
         execute "bundle exec rake trello_release_bot:create_release\[#{rake_args}\]"
         puts "saindo so locally"
+      end
     end
   end
 
