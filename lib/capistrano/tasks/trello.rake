@@ -1,6 +1,7 @@
 namespace :trello do
   desc 'Creates Trello Card with release info'
   task :create_release do
+    next unless fetch(:stage).eql? :production
     servers = []
     on roles(:all) do |server| 
       servers << server.hostname
@@ -8,7 +9,7 @@ namespace :trello do
     run_locally do
       revission_rage = "#{fetch(:previous_revision)}..#{fetch(:current_revision)}"
       rake_args = "#{fetch(:repo_path)},#{revission_rage},#{fetch(:application)},#{servers}"
-      execute :rake, "trello_release_bot:create_release\[#{rake_args}\]"
+      execute "bundle exec rake trello_release_bot:create_release\[#{rake_args}\]"
     end
   end
 
