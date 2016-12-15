@@ -12,7 +12,7 @@ namespace :trello do
         puts "entrou no run_locally"
         revission_rage = "#{fetch(:previous_revision)}..#{fetch(:current_revision)}"
         rake_args = "#{fetch(:repo_path)},#{revission_rage},#{fetch(:application)},#{servers}"
-        execute "bundle exec rake trello_release_bot:create_release\[#{rake_args}\]"
+        rake trello_release_bot:create_release\["#{rake_args}"\]
         puts "saindo so locally"
       end
     end
