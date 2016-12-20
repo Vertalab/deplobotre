@@ -13,7 +13,7 @@ namespace :trello do
         revission_rage = "#{fetch(:previous_revision)}..#{fetch(:current_revision)}"
         # rake_args = "#{},#{revission_rage},#{},#{servers}"
         # system "rake trello_release_bot:create_release\[#{rake_args}\]"
-        servers = args[:servers].match(/\[(.*?)\]/).to_s[1...-1].split(',')
+        # servers = args[:servers].match(/\[(.*?)\]/).to_s[1...-1].split(',')
         TrelloReleaseBot.generate_release(
           repo_path: fetch(:repo_path),
           revission_rage: revission_rage,
