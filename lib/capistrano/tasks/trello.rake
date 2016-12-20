@@ -16,7 +16,7 @@ namespace :trello do
         # servers = args[:servers].match(/\[(.*?)\]/).to_s[1...-1].split(',')
         TrelloReleaseBot.generate_release(
           repo_path: fetch(:repo_path),
-          revission: `git rev-parse origin/#{fetch(:branch)}`.strip!
+          revission: `git rev-parse origin/#{fetch(:branch)}`.strip! ,
           application: fetch(:application),
           servers: servers
         )
