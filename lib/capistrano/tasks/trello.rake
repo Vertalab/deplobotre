@@ -8,6 +8,7 @@ namespace :trello do
       puts "Pegou os servers: #{servers}"
     end
     on primary :app do
+      require '../../trello_release_bot'
       within current_path.to_s do
         puts "entrou no run_locally new"
         revission_rage = "#{fetch(:previous_revision)}..#{fetch(:current_revision)}"
