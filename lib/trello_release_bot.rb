@@ -37,7 +37,7 @@ module TrelloReleaseBot
     texts.push(servers_text) if options[:servers].any?
     texts.push(revission_text)
 
-    card_name = Time.current.strftime("#{options[:application]} | %Y-%m-%d %T%:z")
+    card_name = Time.now.strftime("#{options[:application]} | %Y-%m-%d %T%:z")
     release_card = trello_bot.create_card(list['id'], card_name, texts.join(TEXT_DIVIDER))
     commend_card_text = "This card was deployed to [**#{options[:application]}**](#{release_card['shortUrl']})"
 
