@@ -6,6 +6,7 @@ module TrelloReleaseBot
       @key = Base.config.trello_key
       @token = Base.config.trello_token
       @board_id = Base.config.board_id
+      puts "#{@key}, #{@token}, #{@board_id}"
     end
 
     def board
