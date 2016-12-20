@@ -9,22 +9,19 @@ namespace :trello do
       servers << server.hostname
       puts "Pegou os servers: #{servers}"
     end
-    on primary :app do
-      within current_path.to_s do
+      run_locally do
         puts "entrou no run_locally new"
-        revission_rage = "#{fetch(:previous_revision)}..#{fetch(:current_revision)}"
         # rake_args = "#{},#{revission_rage},#{},#{servers}"
         # system "rake trello_release_bot:create_release\[#{rake_args}\]"
         # servers = args[:servers].match(/\[(.*?)\]/).to_s[1...-1].split(',')
         TrelloReleaseBot.generate_release(
           repo_path: fetch(:repo_path),
-          revission_rage: revission_rage,
+          revission: `git rev-parse origin/#{fetch(:branch)}`.strip!
           application: fetch(:application),
           servers: servers
         )
         puts "saindo so locally"
       end
-    end
   end
 
   task :add_default_hooks do
