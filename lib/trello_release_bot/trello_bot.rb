@@ -82,9 +82,9 @@ module TrelloReleaseBot
     end
 
     def resource(path, method = :get, params = {})
-      puts "#{params}"
       params[:key] = @key
       params[:token] = @token
+      puts "#{params}"
       res = RestClient::Request.execute(
         method: method,
         url: "#{BASE_URL}/#{path}?#{params.to_query}",
