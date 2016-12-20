@@ -1,4 +1,3 @@
-require_relative '../../trello_release_bot.rb'
 namespace :trello do
   desc 'Creates Trello Card with release info'
   task :create_release do
