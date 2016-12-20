@@ -84,9 +84,8 @@ module TrelloReleaseBot
     def resource(path, method = :get, params = {})
       params[:key] = @key
       params[:token] = @token
-      puts "#{params}"
-      res = RestClient::Request.execute(
       query_string = URI.encode_www_form(params)
+      res = RestClient::Request.execute(
         method: method,
         url: "#{BASE_URL}/#{path}?#{query_string}",
         headers: { 'Content-Type' => 'application/json' }
