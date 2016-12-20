@@ -16,7 +16,7 @@ module TrelloReleaseBot
   end
 
   # @param [Hash] options
-  # @option opts [String] :repo_path, path to git repo
+  # @option opts [String] :repo_revision, path to git repo
   # @option opts [String] :revision, for git logs
   # @option opts [String] :application, name of application
   # @option opts [Array] :servers, servers to which release is deployed to
@@ -27,7 +27,7 @@ module TrelloReleaseBot
     list = trello_bot.find_list(target_list_name) || trello_bot.create_list(target_list_name)
     label = trello_bot.find_label("Release") || trello_bot.create_label("Release")
     servers_text = "**Servers:**\n\n"
-    revission_text = "**Revision:**\n\n #{options[:repo_path]}/commit/#{options[:revission]}"
+    revission_text = "**Revision:**\n\n #{options[:repo_revision]}/commit/#{options[:revission]}"
 
     options[:servers].each do |server_link|
       servers_text += server_line(server_link)
