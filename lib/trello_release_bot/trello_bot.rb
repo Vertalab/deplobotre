@@ -87,7 +87,7 @@ module TrelloReleaseBot
       puts "#{params}"
       res = RestClient::Request.execute(
         method: method,
-        url: "#{BASE_URL}/#{path}?#{params.to_query}",
+        url: "#{BASE_URL}/#{path}?#{URI.encode_www_form("#{params}")}",
         headers: { 'Content-Type' => 'application/json' }
       )
       JSON.parse(res)
