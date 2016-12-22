@@ -3,7 +3,7 @@ require_relative '../../trello_release_bot'
 namespace :trello do
   desc 'Creates Trello Card with release info'
   task :create_release do
-    next unless fetch(:stage).eql? :staging
+    next unless fetch(:stage).eql? :production
     servers = []
     on roles(:all) do |server|
       servers << server.hostname
