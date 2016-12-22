@@ -7,7 +7,7 @@ After each `cap deploy` this bot creates trello card with information about depl
 In `Gemfile`:
 
 ```ruby
-gem 'trello_release_bot', git: 'https://github.com/Vertalab/deplobotre.git'
+gem 'trello_release_bot', git: 'https://github.com/skore-io/deplobotre.git'
 ```
 
 In `config/initializers/trello_release_bot.rb`

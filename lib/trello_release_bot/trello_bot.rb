@@ -6,6 +6,7 @@ module TrelloReleaseBot
       @key = Base.config.trello_key
       @token = Base.config.trello_token
       @board_id = Base.config.board_id
+      puts "#{@key}, #{@token}, #{@board_id}"
     end
 
     def board
@@ -83,9 +84,10 @@ module TrelloReleaseBot
     def resource(path, method = :get, params = {})
       params[:key] = @key
       params[:token] = @token
+      query_string = URI.encode_www_form(params)
       res = RestClient::Request.execute(
         method: method,
-        url: "#{BASE_URL}/#{path}?#{params.to_query}",
+        url: "#{BASE_URL}/#{path}?#{query_string}",
         headers: { 'Content-Type' => 'application/json' }
       )
       JSON.parse(res)
